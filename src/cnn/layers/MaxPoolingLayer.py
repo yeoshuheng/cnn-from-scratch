@@ -39,9 +39,10 @@ class MaxPoolingLayer:
             opt[h, w] = np.amax(imgPatch, axis = (0, 1)) # Get the argmax for that given patch.
         return opt
     
-    def backProp(self, dE_dY):
+    def backProp(self, dE_dY, alpha):
         """
         @param dE_dY : Gradient taken with respect to the error term.
+        @param alpha : Can be ignored here, only given for consistency across layers.
         @return The loss gradient with respect to the max pooling layer.
         
         Note that:
@@ -52,7 +53,7 @@ class MaxPoolingLayer:
             Essentially, we only want to replace the max arguments of each patch
             with the corresponding value from dE_dY while ignoring the rest.
         """
-        dE_dk = np.zeros(self.image.shape)
+        dE_dk, _ = np.zeros(self.image.shape), alpha
         for imgPatch, h, w in self.patchGenerator(self.image):
             patch_height, patch_width, no_kernel = imgPatch.shape
             max_val = np.amax(imgPatch, axis = (0, 1)) # Take the max value in each patch.
