@@ -26,7 +26,7 @@ class ConvolutionalLayer:
         for h in range(img_height - self.kernel_size + 1):
             for w in range(img_width - self.kernel_size + 1):
                 imgPatch = img[h : (h + self.kernel_size), w : (w + self.kernel_size)]
-                yield imgPatch, h, w
+                yield imgPatch, h, w # Yield is here to pause execution until results are needed.
 
     def forwardProp(self, img):
         """
