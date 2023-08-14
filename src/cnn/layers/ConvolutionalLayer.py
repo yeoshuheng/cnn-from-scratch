@@ -50,7 +50,7 @@ class ConvolutionalLayer:
         Computes gradient of loss function (E) w.r.t each 
         weight in the layer (dE_dk) and update the kernel.
         @param dE_dY : The loss from the previous layer propogated to the conv. layer.    
-        @param alpha :
+        @param alpha : Learning rate for gradient descent.
         @return The loss gradient with respect to the kernels.
 
         Works according to the following chain rule:
